@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REAL COFFEE - Your Favorite Coffee Cafe</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="#home" class="nav-logo">
+                <h2 class="logo-text">AG COFFEE</h2>
+            </a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#menu" class="nav-link">Menu</a></li>
+                <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+                <li class="nav-item"><a href="#onlineorder" class="nav-link">Order Online</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Welcome to AG COFFEE</h1>
+            <p>Experience the best coffee in town. Freshly brewed, aromatic, and perfect every time.</p>
+            <p>Visit us at 147 Coffee Street, Nagpur, MAHARASTHRA or order online for fast delivery!</p>
+            <p>Phone: (+91 9356788223)</p>
+
+            <a href="#menu" class="cta-button">View Menu</a>
+        </div>
+    </section>
+
+    <section id="menu" class="menu">
+        <div class="container">
+            <h2 class="section-title">Our Menu</h2>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <h3>Espresso</h3>
+                    <p class="description">Strong and bold</p>
+                    <p class="price">349/-</p>
+    <input type="number" min="1" value="1" class="quantity">
+
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+                <div class="menu-item">
+                    <h3>Cappuccino</h3>
+                    <p>Frothy and creamy, 499/-</p>
+                    <p class="price">499/-</p>
+                    <input type="number" min="1" value="1" class="quantity">
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+                <div class="menu-item">
+                    <h3>Latte</h3>
+                    <p class="description">Smooth and milky</p>
+                    <p class="price">549/-</p>
+                    <input type="number" min="1" value="1" class="quantity">
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+                <div class="menu-item">
+                    <h3>Americano</h3>
+                    <p class="description">Classic drip coffee</p>
+                    <p class="price">649/-</p>
+                    <input type="number" min="1" value="1" class="quantity">
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+                <div class="menu-item">
+                    <h3>Mocha</h3>
+                    <p class="description">Chocolate heaven</p>
+                    <p class="price">699/-</p>
+                    <input type="number" min="1" value="1" class="quantity">
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+                <div class="menu-item">
+                    <h3>Cold Brew</h3>
+                    <p class="description">Refreshing iced</p>
+                    <p class="price">749/-</p>
+                    <input type="number" min="1" value="1" class="quantity">
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+                <div class="menu-item">
+                    <h3>Flat White</h3>
+                    <p class="description">Velvety smooth</p>
+                    <p class="price">669/-</p>
+                    <input type="number" min="1" value="1" class="quantity">
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+                <div class="menu-item">
+                    <h3>Macchiato</h3>
+                    <p class="description">Espresso with a dash of milk</p>
+                    <p class="price">759/-</p>
+                    <input type="number" min="1" value="1" class="quantity">
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+                <div class="menu-item">
+                    <h3>Affogato</h3>
+                    <p class="description">Espresso over ice cream</p>
+                    <p class="price">799/-</p>
+                    <input type="number" min="1" value="1" class="quantity">
+                    <button class="add-to-cart">Add to Cart</button>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Our Customers Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial">
+                    <div class="stars">★★★★★</div>
+                    <p>"Best coffee in town! The espresso is perfect every time."</p>
+                    <h4>- Priya S.</h4>
+                </div>
+                <div class="testimonial">
+                    <div class="stars">★★★★★</div>
+                    <p>"Amazing ambiance and incredibly friendly service. My favorite spot!"</p>
+                    <h4>- Rahul K.</h4>
+                </div>
+                <div class="testimonial">
+                    <div class="stars">★★★★☆</div>
+                    <p>"Love the cold brew! Smooth and refreshing. Highly recommend."</p>
+                    <h4>- Anjali M.</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="cart" class="cart">
+
+        <div class="container">
+            <h2 class="section-title">Your Cart</h2>
+            <div id="cart-items"></div>
+            <div id="cart-total">Total: ₹0.00</div>
+            <button id="checkout-btn">Proceed to Checkout</button>
+        </div>
+    </section>
+
+    <!-- Online Order Section -->
+    <section id="onlineorder" class="online-order">
+        <div class="container">
+            <h2 class="section-title">Order Online</h2>
+            <form class="order-form" id="order-form">
+                <input type="text" name="name" placeholder="Full Name" required>
+                <input type="tel" name="phone" id="phone" placeholder="Phone Number" required>
+                <input type="text" name="address" placeholder="Delivery Address" required>
+                <textarea name="notes" placeholder="Special Instructions (Optional)" rows="4"></textarea>
+                <input type="hidden" name="total" id="order-total">
+                <button type="submit">Place Order (Total from Cart)</button>
+                <input type="hidden" name="cart" id="cart-data">
+                <a href="#cart" class="view-cart-link">View Cart</a>
+            </form>
+            <div id="order-status" class="order-status"></div>
+            <p>Fast delivery within 30 minutes! Payment on delivery.</p>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+
+        <div class="container">
+            <h2 class="section-title">About Us</h2>
+            <p>REAL COFFEE is a cozy cafe dedicated to serving the finest coffee beans roasted daily. Our passion for coffee brings people together in a warm, inviting atmosphere. Join us for your daily brew!</p>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <form class="contact-form" id="contact-form">
+                <input type="text" id="contact-name" placeholder="Your Name" required>
+                <input type="email" id="contact-email" placeholder="Your Email" required>
+                <button type="button" id="send-otp-btn">Send OTP</button>
+                <input type="text" id="otp-input" placeholder="Enter OTP" style="display: none;" required>
+                <textarea id="contact-message" placeholder="Your Message" required style="display: none;"></textarea>
+                <button type="submit" id="send-message-btn" style="display: none;">Send Message</button>
+            </form>
+            <p>147 Coffee Street, Nagpur,MAHARASTHRA| Phone: (+91 9356788223) </p>
+            <a href="https://www.facebook.com/realcoffee" target="_blank">Facebook</a> |
+            <a href="https://www.instagram.com/realcoffee" target="_blank">Instagram</a> |
+            <a href="https://www.twitter.com/realcoffee" target="_blank">Twitter</a>
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 AG COFFEE. All rights reserved.</p>
+        <p>Designed by Ayush.M Gupta (AG)</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
