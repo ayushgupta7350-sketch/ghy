@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>AG COFFEE - Our Menu | Premium Coffee Selections</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #fefaf5;
+            color: #2d2a24;
+            line-height: 1.5;
+        }
+
+        /* Navigation */
+        header {
+            background: #2c1e12;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #e6c28f;
+            text-decoration: none;
+        }
+
+        .nav-logo {
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #f5e7d9;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 1rem;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: #e6b45e;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 28px;
+            height: 3px;
+            background: #e6c28f;
+            border-radius: 3px;
+        }
+
+        /* menu hero */
+        .menu-hero {
+            background: linear-gradient(135deg, #3e2a21 0%, #1f140c 100%);
+            color: white;
+            text-align: center;
+            padding: 3rem 1rem;
+        }
+
+        .menu-hero h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .menu-hero p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* menu section */
+        .menu-main {
+            max-width: 1280px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            color: #3b2a1f;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: #c28a48;
+            margin: 0.5rem auto 0;
+            border-radius: 4px;
+        }
+
+        .menu-category {
+            margin-bottom: 2rem;
+            font-size: 1.6rem;
+            font-weight: 600;
+            border-left: 6px solid #c28a48;
+            padding-left: 1rem;
+            margin-top: 2rem;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .menu-item {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: all 0.25s ease;
+            border: 1px solid #f0e2d4;
+            padding: 1.2rem 1.5rem 1.5rem;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 30px rgba(0,0,0,0.1);
+            border-color: #e2c7aa;
+        }
+
+        .menu-item h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #2c1e12;
+            margin-bottom: 0.25rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #eedfc8;
+            font-size: 0.7rem;
+            padding: 0.2rem 0.7rem;
+            border-radius: 30px;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+            color: #6b3f1c;
+        }
+
+        .description {
+            color: #5e4b38;
+            font-size: 0.9rem;
+            margin: 0.5rem 0;
+            line-height: 1.4;
+        }
+
+        .price {
+            font-weight: 700;
+            font-size: 1.6rem;
+            color: #b45f2b;
+            margin: 0.8rem 0 0.5rem;
+        }
+
+        .item-footer {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .quantity {
+            width: 70px;
+            padding: 0.5rem;
+            border: 1px solid #ddd2c4;
+            border-radius: 40px;
+            text-align: center;
+            font-weight: 500;
+            font-size: 1rem;
+            background: #fffaf5;
+        }
+
+        .add-to-cart {
+            background: #2c1e12;
+            border: none;
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: 0.2s;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .add-to-cart:hover {
+            background: #b45f2b;
+            transform: scale(0.97);
+        }
+
+        /* cart summary panel */
+        .cart-summary {
+            background: #fff7f0;
+            border-radius: 28px;
+            padding: 1.8rem;
+            margin-top: 3rem;
+            border: 1px solid #eedfc8;
+            box-shadow: 0 5px 12px rgba(0,0,0,0.05);
+        }
+
+        .cart-summary h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            color: #2c1e12;
+        }
+
+        #cart-items-list {
+            list-style: none;
+            margin-bottom: 1rem;
+            max-height: 260px;
+            overflow-y: auto;
+        }
+
+        #cart-items-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.6rem 0;
+            border-bottom: 1px dashed #e6cfb5;
+        }
+
+        .cart-total {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin: 1rem 0;
+            text-align: right;
+            color: #a6531c;
+        }
+
+        .btn-checkout {
+            background: #c28a48;
+            border: none;
+            padding: 0.8rem 1.8rem;
+            font-weight: 700;
+            border-radius: 40px;
+            font-size: 1rem;
+            cursor: pointer;
+            color: white;
+            transition: 0.2s;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .btn-checkout:hover {
+            background: #9b5e2c;
+        }
+
+        .empty-cart-msg {
+            text-align: center;
+            color: #8f7a66;
+            padding: 1rem;
+        }
+
+        footer {
+            background: #1f140c;
+            color: #d9c2a5;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background: #2c1e12;
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                padding: 2rem;
+                gap: 1.5rem;
+            }
+            .nav-menu.active {
+                left: 0;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+            .menu-hero h1 {
+                font-size: 2rem;
+            }
+        }
+
+        .toast-msg {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #2c6e2c;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 500;
+            z-index: 999;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav class="navbar">
+        <a href="#" class="nav-logo">
+            <h2 class="logo-text">AG COFFEE</h2>
+        </a>
+        <ul class="nav-menu">
+            <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+            <li class="nav-item"><a href="menu.html" class="nav-link active">Menu</a></li>
+            <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+            <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+            <li class="nav-item"><a href="onlineorder.html" class="nav-link">Order Online</a></li>
+        </ul>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+</header>
+
+<section class="menu-hero">
+    <h1>Our Signature Brews</h1>
+    <p>Handcrafted with passion, roasted to perfection. Explore our curated coffee menu — from bold espresso to creamy indulgences.</p>
+</section>
+
+<main class="menu-main">
+    <h2 class="section-title">☕ Coffee Selections</h2>
+    
+    <div class="menu-category">🔥 Classics & Espresso</div>
+    <div class="menu-grid" id="espresso-grid">
+        <!-- dynamic from js but static structured, we'll generate items via JS for cart sync but also keep inline -->
+    </div>
+
+    <div class="menu-category">🍫 Indulgent Specials</div>
+    <div class="menu-grid" id="special-grid"></div>
+
+    <div class="menu-category">❄️ Iced & Cold Brews</div>
+    <div class="menu-grid" id="iced-grid"></div>
+
+    <!-- Cart Summary Section -->
+    <div class="cart-summary" id="cart-summary-panel">
+        <h3>🛒 Your Cart</h3>
+        <ul id="cart-items-list">
+            <li class="empty-cart-msg">Cart is empty. Add delicious coffee!</li>
+        </ul>
+        <div class="cart-total" id="cart-total-amount">Total: ₹0.00</div>
+        <button class="btn-checkout" id="proceed-checkout-btn">Proceed to Checkout →</button>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2024 AG COFFEE. All rights reserved. | 147 Coffee Street, Nagpur, Maharashtra</p>
+    <p>Designed by Ayush.M Gupta (AG) | Freshly brewed happiness since 2024</p>
+</footer>
+
+<script>
+    // ---------- FULL MENU DATA ----------
+    const fullMenu = [
+        { id: 1, name: "Espresso", description: "Strong, bold & aromatic single shot", price: 349, category: "classic", badge: "Classic Shot" },
+        { id: 2, name: "Cappuccino", description: "Frothy foam, rich espresso, dusted with cocoa", price: 499, category: "classic", badge: "Creamy" },
+        { id: 3, name: "Latte", description: "Smooth steamed milk meets robust espresso", price: 549, category: "classic", badge: "Velvety" },
+        { id: 4, name: "Americano", description: "Classic drip-style, bold & clean", price: 649, category: "classic", badge: "Pure & Strong" },
+        { id: 5, name: "Flat White", description: "Velvety microfoam, intense espresso", price: 669, category: "classic", badge: "Aussie Style" },
+        { id: 6, name: "Macchiato", description: "Espresso marked with a dash of silky milk", price: 759, category: "classic", badge: "Bold Mark" },
+        { id: 7, name: "Mocha", description: "Chocolate heaven with espresso & whipped cream", price: 699, category: "special", badge: "Chocolate Fusion" },
+        { id: 8, name: "Affogato", description: "Espresso poured over vanilla gelato", price: 799, category: "special", badge: "Dessert Coffee" },
+        { id: 9, name: "Caramel Macchiato", description: "Vanilla, caramel drizzle & espresso", price: 789, category: "special", badge: "Sweet Indulgence" },
+        { id: 10, name: "Hazelnut Latte", description: "Nutty, creamy & smooth", price: 599, category: "special", badge: "Nutty Bliss" },
+        { id: 11, name: "Cold Brew", description: "Slow-steeped 12hrs, refreshing iced", price: 749, category: "iced", badge: "Smooth Chill" },
+        { id: 12, name: "Iced Americano", description: "Chilled & crisp, low-cal refresh", price: 599, category: "iced", badge: "Iced Classic" },
+        { id: 13, name: "Iced Mocha", description: "Cold chocolate espresso blend", price: 729, category: "iced", badge: "Chill & Chocolate" },
+        { id: 14, name: "Frappé", description: "Blended icy coffee with cream topping", price: 679, category: "iced", badge: "Frosty" }
+    ];
+
+    // Cart array: each item { id, name, price, quantity }
+    let cart = [];
+
+    // Helper: Save to localStorage
+    function saveCart() {
+        localStorage.setItem('agCoffeeCart', JSON.stringify(cart));
+    }
+
+    // Load cart from storage
+    function loadCart() {
+        const stored = localStorage.getItem('agCoffeeCart');
+        if(stored) {
+            try {
+                cart = JSON.parse(stored);
+                if(!Array.isArray(cart)) cart = [];
+            } catch(e) { cart = []; }
+        } else {
+            cart = [];
+        }
+        renderCartUI();
+    }
+
+    // Add item to cart
+    function addToCart(menuItem, quantityVal) {
+        let qty = parseInt(quantityVal);
+        if(isNaN(qty) || qty < 1) qty = 1;
+        
+        const existingIndex = cart.findIndex(item => item.id === menuItem.id);
+        if(existingIndex !== -1) {
+            cart[existingIndex].quantity += qty;
+        } else {
+            cart.push({
+                id: menuItem.id,
+                name: menuItem.name,
+                price: menuItem.price,
+                quantity: qty
+            });
+        }
+        saveCart();
+        renderCartUI();
+        showToast(`Added ${qty} × ${menuItem.name} to cart 🧋`);
+    }
+
+    // Update quantity in cart (from list)
+    function updateCartItemQuantity(id, newQty) {
+        if(newQty <= 0) {
+            cart = cart.filter(item => item.id !== id);
+        } else {
+            const idx = cart.findIndex(item => item.id === id);
+            if(idx !== -1) cart[idx].quantity = newQty;
+        }
+        saveCart();
+        renderCartUI();
+    }
+
+    // Remove item completely
+    function removeCartItem(id) {
+        cart = cart.filter(item => item.id !== id);
+        saveCart();
+        renderCartUI();
+        showToast("Item removed from cart");
+    }
+
+    // Render cart UI and total
+    function renderCartUI() {
+        const cartListEl = document.getElementById('cart-items-list');
+        const totalEl = document.getElementById('cart-total-amount');
+        if(!cartListEl) return;
+
+        if(cart.length === 0) {
+            cartListEl.innerHTML = '<li class="empty-cart-msg">✨ Cart is empty. Add delicious coffee!</li>';
+            totalEl.innerText = 'Total: ₹0.00';
+            return;
+        }
+
+        let total = 0;
+        let itemsHtml = '';
+        cart.forEach(item => {
+            const subtotal = item.price * item.quantity;
+            total += subtotal;
+            itemsHtml += `
+                <li style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+                    <div><strong>${item.name}</strong> x ${item.quantity} <span style="color:#b45f2b;">₹${item.price}</span></div>
+                    <div style="display: flex; gap: 8px; align-items: center;">
+                        <button class="qty-decr" data-id="${item.id}" style="background:#eadbcb; border:none; width:28px; border-radius:30px; cursor:pointer;">−</button>
+                        <span style="min-width: 28px; text-align:center;">${item.quantity}</span>
+                        <button class="qty-incr" data-id="${item.id}" style="background:#eadbcb; border:none; width:28px; border-radius:30px; cursor:pointer;">+</button>
+                        <button class="remove-item" data-id="${item.id}" style="background:#f0cfb5; border:none; border-radius:30px; padding:4px 12px; font-size:12px; cursor:pointer;">✖</button>
+                    </div>
+                    <div>₹${subtotal}</div>
+                </li>
+            `;
+        });
+        cartListEl.innerHTML = itemsHtml;
+        totalEl.innerText = `Total: ₹${total.toFixed(2)}`;
+
+        // attach dynamic events
+        document.querySelectorAll('.qty-decr').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const id = parseInt(btn.dataset.id);
+                const existing = cart.find(i => i.id === id);
+                if(existing && existing.quantity > 1) {
+                    updateCartItemQuantity(id, existing.quantity - 1);
+                } else if(existing && existing.quantity === 1) {
+                    removeCartItem(id);
+                }
+            });
+        });
+        document.querySelectorAll('.qty-incr').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const id = parseInt(btn.dataset.id);
+                const existing = cart.find(i => i.id === id);
+                if(existing) updateCartItemQuantity(id, existing.quantity + 1);
+            });
+        });
+        document.querySelectorAll('.remove-item').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const id = parseInt(btn.dataset.id);
+                removeCartItem(id);
+            });
+        });
+    }
+
+    // render menu grids with add-to-cart functionality
+    function renderMenu() {
+        const espressoContainer = document.getElementById('espresso-grid');
+        const specialContainer = document.getElementById('special-grid');
+        const icedContainer = document.getElementById('iced-grid');
+
+        const classicItems = fullMenu.filter(item => item.category === 'classic');
+        const specialItems = fullMenu.filter(item => item.category === 'special');
+        const icedItems = fullMenu.filter(item => item.category === 'iced');
+
+        function createItemCard(item) {
+            const cardDiv = document.createElement('div');
+            cardDiv.className = 'menu-item';
+            cardDiv.innerHTML = `
+                <span class="badge">${item.badge || 'Fresh Brew'}</span>
+                <h3>${item.name}</h3>
+                <p class="description">${item.description}</p>
+                <div class="price">₹${item.price}/-</div>
+                <div class="item-footer">
+                    <input type="number" min="1" value="1" class="quantity" id="qty-${item.id}">
+                    <button class="add-to-cart" data-id="${item.id}">Add to Cart</button>
+                </div>
+            `;
+            const addBtn = cardDiv.querySelector('.add-to-cart');
+            addBtn.addEventListener('click', () => {
+                const qtyInput = cardDiv.querySelector('.quantity');
+                let qty = parseInt(qtyInput.value);
+                if(isNaN(qty) || qty < 1) qty = 1;
+                addToCart(item, qty);
+            });
+            return cardDiv;
+        }
+
+        espressoContainer.innerHTML = '';
+        specialContainer.innerHTML = '';
+        icedContainer.innerHTML = '';
+
+        classicItems.forEach(item => espressoContainer.appendChild(createItemCard(item)));
+        specialItems.forEach(item => specialContainer.appendChild(createItemCard(item)));
+        icedItems.forEach(item => icedContainer.appendChild(createItemCard(item)));
+    }
+
+    function showToast(msg) {
+        let toast = document.querySelector('.toast-msg');
+        if(toast) toast.remove();
+        const div = document.createElement('div');
+        div.className = 'toast-msg';
+        div.innerText = msg;
+        document.body.appendChild(div);
+        setTimeout(() => div.remove(), 2000);
+    }
+
+    // Checkout function: store cart in session and redirect to order page or alert with summary
+    function handleCheckout() {
+        if(cart.length === 0) {
+            showToast("Your cart is empty! Add some delicious coffee first.");
+            return;
+        }
+        // store cart in localStorage for onlineorder page to pickup (compatible with main site)
+        localStorage.setItem('agCoffeeCart', JSON.stringify(cart));
+        // we can either redirect to onlineorder.html if exists, else show modal
+        const totalAmount = cart.reduce((sum, i) => sum + (i.price * i.quantity), 0);
+        showToast(`Proceeding to checkout! Total: ₹${totalAmount}`);
+        // if onlineorder.html is present, redirect
+        setTimeout(() => {
+            window.location.href = 'onlineorder.html';
+        }, 600);
+    }
+
+    // Mobile hamburger toggle
+    function setupMobileNav() {
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        if(hamburger && navMenu) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => navMenu.classList.remove('active'));
+            });
+        }
+    }
+
+    // also allow manual sync with other pages? keep cart persistent.
+    window.addEventListener('DOMContentLoaded', () => {
+        renderMenu();
+        loadCart();        // loads cart from localStorage
+        setupMobileNav();
+
+        const checkoutBtn = document.getElementById('proceed-checkout-btn');
+        if(checkoutBtn) checkoutBtn.addEventListener('click', handleCheckout);
+    });
+</script>
+</body>
+</html>

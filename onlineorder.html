@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>AG COFFEE - Order Online | Fresh Coffee Delivered to Your Doorstep</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #fefaf5;
+            color: #2d2a24;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        header {
+            background: #2c1e12;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #e6c28f;
+            text-decoration: none;
+        }
+
+        .nav-logo {
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #f5e7d9;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 1rem;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: #e6b45e;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 28px;
+            height: 3px;
+            background: #e6c28f;
+            border-radius: 3px;
+        }
+
+        /* Hero Section */
+        .order-hero {
+            background: linear-gradient(135deg, #3e2a21 0%, #1f140c 100%);
+            color: white;
+            text-align: center;
+            padding: 3rem 1rem;
+        }
+
+        .order-hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .order-hero p {
+            font-size: 1.1rem;
+            max-width: 650px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        .delivery-badge {
+            display: inline-block;
+            background: #c28a48;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #3b2a1f;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: #c28a48;
+            margin-top: 0.5rem;
+            border-radius: 4px;
+        }
+
+        /* Order Layout Grid */
+        .order-layout {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        /* Menu Section */
+        .menu-section {
+            background: white;
+            border-radius: 28px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        .menu-category {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin: 1.5rem 0 1rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e6cfb5;
+            color: #2c1e12;
+        }
+
+        .menu-category:first-of-type {
+            margin-top: 0;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .menu-item {
+            background: #fefaf5;
+            border: 1px solid #eedfc8;
+            border-radius: 20px;
+            padding: 1rem;
+            transition: all 0.2s;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            border-color: #c28a48;
+        }
+
+        .menu-item h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #2c1e12;
+        }
+
+        .menu-desc {
+            font-size: 0.75rem;
+            color: #8f7a66;
+            margin: 0.3rem 0;
+        }
+
+        .menu-price {
+            font-weight: 700;
+            color: #b45f2b;
+            font-size: 1.2rem;
+            margin: 0.5rem 0;
+        }
+
+        .item-controls {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .quantity-input {
+            width: 65px;
+            padding: 0.4rem;
+            border: 1px solid #ddd2c4;
+            border-radius: 30px;
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .add-btn {
+            background: #2c1e12;
+            color: white;
+            border: none;
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.8rem;
+            transition: background 0.2s;
+        }
+
+        .add-btn:hover {
+            background: #b45f2b;
+        }
+
+        /* Cart Sidebar */
+        .cart-sidebar {
+            background: white;
+            border-radius: 28px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .cart-sidebar h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #2c1e12;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .cart-items-list {
+            max-height: 350px;
+            overflow-y: auto;
+            margin-bottom: 1rem;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.7rem 0;
+            border-bottom: 1px solid #f0e2d4;
+            font-size: 0.85rem;
+        }
+
+        .cart-item-info {
+            flex: 2;
+        }
+
+        .cart-item-name {
+            font-weight: 600;
+        }
+
+        .cart-item-qty {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .qty-btn {
+            background: #e8d5bc;
+            border: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .qty-btn:hover {
+            background: #c28a48;
+            color: white;
+        }
+
+        .cart-item-price {
+            min-width: 60px;
+            text-align: right;
+            font-weight: 500;
+        }
+
+        .remove-item {
+            background: none;
+            border: none;
+            color: #c0392b;
+            cursor: pointer;
+            font-size: 1.1rem;
+            margin-left: 0.5rem;
+        }
+
+        .cart-total {
+            border-top: 2px solid #e6cfb5;
+            padding-top: 1rem;
+            margin: 1rem 0;
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-align: right;
+            color: #b45f2b;
+        }
+
+        .empty-cart {
+            text-align: center;
+            color: #8f7a66;
+            padding: 2rem 0;
+        }
+
+        /* Delivery Form */
+        .delivery-form {
+            margin-top: 1.5rem;
+            background: #fff5ec;
+            border-radius: 20px;
+            padding: 1.2rem;
+        }
+
+        .delivery-form h4 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: #2c1e12;
+        }
+
+        .form-group {
+            margin-bottom: 0.8rem;
+        }
+
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 0.7rem 1rem;
+            border: 1.5px solid #e6cfb5;
+            border-radius: 16px;
+            font-family: 'Poppins', sans-serif;
+            background: white;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #c28a48;
+        }
+
+        .place-order-btn {
+            width: 100%;
+            background: #c28a48;
+            color: white;
+            border: none;
+            padding: 0.9rem;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 0.5rem;
+        }
+
+        .place-order-btn:hover {
+            background: #9b5e2c;
+        }
+
+        .place-order-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        /* Promo Section */
+        .promo-section {
+            margin-top: 1rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #b45f2b;
+        }
+
+        /* Features */
+        .features {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+            background: #fff5ec;
+            border-radius: 28px;
+            padding: 1.5rem;
+        }
+
+        .feature {
+            text-align: center;
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+        }
+
+        .feature-text {
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* Toast */
+        .toast-msg {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #2c6e2c;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 500;
+            z-index: 999;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .toast-msg.error {
+            background: #c0392b;
+        }
+
+        footer {
+            background: #1f140c;
+            color: #d9c2a5;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 900px) {
+            .order-layout {
+                grid-template-columns: 1fr;
+            }
+            .cart-sidebar {
+                position: static;
+                order: -1;
+            }
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background: #2c1e12;
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                padding: 2rem;
+                gap: 1.5rem;
+            }
+            .nav-menu.active {
+                left: 0;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .order-hero h1 {
+                font-size: 2rem;
+            }
+            .container {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav class="navbar">
+        <a href="index.html" class="nav-logo">
+            <h2 class="logo-text">AG COFFEE</h2>
+        </a>
+        <ul class="nav-menu">
+            <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+            <li class="nav-item"><a href="menu.html" class="nav-link">Menu</a></li>
+            <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+            <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+            <li class="nav-item"><a href="onlineorder.html" class="nav-link active">Order Online</a></li>
+        </ul>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+</header>
+
+<section class="order-hero">
+    <h1>Order Online ☕</h1>
+    <p>Freshly brewed coffee delivered to your doorstep in 30 minutes. Free delivery on orders above ₹500!</p>
+    <span class="delivery-badge">🚚 Fast Delivery • COD Available • Secure Payment</span>
+</section>
+
+<main class="container">
+    <!-- Features Banner -->
+    <div class="features">
+        <div class="feature"><div class="feature-icon">⚡</div><div class="feature-text">30 Min Delivery</div></div>
+        <div class="feature"><div class="feature-icon">💰</div><div class="feature-text">Cash on Delivery</div></div>
+        <div class="feature"><div class="feature-icon">🎁</div><div class="feature-text">Free Above ₹500</div></div>
+        <div class="feature"><div class="feature-icon">🌟</div><div class="feature-text">Freshly Roasted</div></div>
+    </div>
+
+    <div class="order-layout">
+        <!-- Left: Menu Items -->
+        <div class="menu-section">
+            <h2 class="section-title">Our Menu</h2>
+            
+            <div class="menu-category">🔥 Espresso Classics</div>
+            <div class="menu-grid" id="classic-grid"></div>
+
+            <div class="menu-category">🍫 Signature Specials</div>
+            <div class="menu-grid" id="special-grid"></div>
+
+            <div class="menu-category">❄️ Cold & Iced</div>
+            <div class="menu-grid" id="iced-grid"></div>
+
+            <div class="menu-category">🍰 Snacks & Pastries</div>
+            <div class="menu-grid" id="snacks-grid"></div>
+        </div>
+
+        <!-- Right: Cart & Checkout -->
+        <div class="cart-sidebar">
+            <h3>🛒 Your Order</h3>
+            <div id="cart-items-container" class="cart-items-list">
+                <div class="empty-cart">✨ Your cart is empty<br>Add some delicious coffee!</div>
+            </div>
+            <div class="cart-total" id="cart-total">Total: ₹0.00</div>
+
+            <div class="delivery-form">
+                <h4>📋 Delivery Details</h4>
+                <div class="form-group">
+                    <input type="text" id="delivery-name" placeholder="Full Name *" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="delivery-phone" placeholder="Phone Number *" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="delivery-address" placeholder="Delivery Address *" required>
+                </div>
+                <div class="form-group">
+                    <select id="payment-method">
+                        <option value="cod">Cash on Delivery (COD)</option>
+                        <option value="online">Online Payment (UPI/Card)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <textarea id="special-instructions" rows="2" placeholder="Special instructions (e.g., extra sugar, less ice)"></textarea>
+                </div>
+                <button id="place-order-btn" class="place-order-btn">🚚 Place Order Now</button>
+                <div class="promo-section">
+                    🎉 First order? Use code: FIRSTCOFFEE10 → 10% off
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2024 AG COFFEE — Brewed with love in Nagpur. All rights reserved.</p>
+    <p>Designed by Ayush M. Gupta (AG) | Freshly roasted · Ethically sourced · Fast Delivery</p>
+</footer>
+
+<script>
+    // ---------- FULL MENU DATABASE ----------
+    const fullMenu = [
+        { id: 1, name: "Espresso", description: "Strong & bold single shot", price: 349, category: "classic" },
+        { id: 2, name: "Cappuccino", description: "Frothy foam, rich espresso", price: 499, category: "classic" },
+        { id: 3, name: "Latte", description: "Smooth & milky", price: 549, category: "classic" },
+        { id: 4, name: "Americano", description: "Classic drip coffee", price: 649, category: "classic" },
+        { id: 5, name: "Flat White", description: "Velvety smooth", price: 669, category: "classic" },
+        { id: 6, name: "Macchiato", description: "Espresso with milk dash", price: 759, category: "classic" },
+        { id: 7, name: "Mocha", description: "Chocolate heaven with cream", price: 699, category: "special" },
+        { id: 8, name: "Affogato", description: "Espresso over ice cream", price: 799, category: "special" },
+        { id: 9, name: "Caramel Macchiato", description: "Vanilla, caramel & espresso", price: 789, category: "special" },
+        { id: 10, name: "Hazelnut Latte", description: "Nutty & creamy", price: 599, category: "special" },
+        { id: 11, name: "Cold Brew", description: "Slow-steeped 12hrs, refreshing", price: 749, category: "iced" },
+        { id: 12, name: "Iced Americano", description: "Chilled & crisp", price: 599, category: "iced" },
+        { id: 13, name: "Iced Mocha", description: "Cold chocolate espresso", price: 729, category: "iced" },
+        { id: 14, name: "Frappé", description: "Blended icy coffee", price: 679, category: "iced" },
+        { id: 15, name: "Chocolate Croissant", description: "Buttery & flaky", price: 149, category: "snack" },
+        { id: 16, name: "Blueberry Muffin", description: "Soft & fruity", price: 129, category: "snack" },
+        { id: 17, name: "Cheese Garlic Bread", description: "Crispy & cheesy", price: 179, category: "snack" },
+        { id: 18, name: "Chocolate Brownie", description: "Gooey & rich", price: 99, category: "snack" }
+    ];
+
+    // Cart array
+    let cart = [];
+
+    // Load cart from localStorage
+    function loadCart() {
+        const stored = localStorage.getItem('agCoffeeCart');
+        if(stored) {
+            try {
+                cart = JSON.parse(stored);
+                if(!Array.isArray(cart)) cart = [];
+            } catch(e) { cart = []; }
+        } else {
+            cart = [];
+        }
+        renderCart();
+    }
+
+    function saveCart() {
+        localStorage.setItem('agCoffeeCart', JSON.stringify(cart));
+        renderCart();
+    }
+
+    function addToCart(item, quantity) {
+        let qty = parseInt(quantity);
+        if(isNaN(qty) || qty < 1) qty = 1;
+        
+        const existing = cart.find(i => i.id === item.id);
+        if(existing) {
+            existing.quantity += qty;
+        } else {
+            cart.push({
+                id: item.id,
+                name: item.name,
+                price: item.price,
+                quantity: qty
+            });
+        }
+        saveCart();
+        showToast(`✓ Added ${qty} × ${item.name} to cart`);
+    }
+
+    function updateQuantity(id, newQty) {
+        if(newQty <= 0) {
+            cart = cart.filter(item => item.id !== id);
+        } else {
+            const idx = cart.findIndex(item => item.id === id);
+            if(idx !== -1) cart[idx].quantity = newQty;
+        }
+        saveCart();
+    }
+
+    function removeItem(id) {
+        cart = cart.filter(item => item.id !== id);
+        saveCart();
+        showToast("Item removed from cart");
+    }
+
+    function renderCart() {
+        const container = document.getElementById('cart-items-container');
+        const totalEl = document.getElementById('cart-total');
+        
+        if(!container) return;
+        
+        if(cart.length === 0) {
+            container.innerHTML = '<div class="empty-cart">✨ Your cart is empty<br>Add some delicious coffee!</div>';
+            totalEl.innerText = 'Total: ₹0.00';
+            return;
+        }
+        
+        let total = 0;
+        let html = '';
+        cart.forEach(item => {
+            const subtotal = item.price * item.quantity;
+            total += subtotal;
+            html += `
+                <div class="cart-item">
+                    <div class="cart-item-info">
+                        <div class="cart-item-name">${item.name}</div>
+                        <div style="font-size:0.7rem; color:#b45f2b;">₹${item.price} each</div>
+                    </div>
+                    <div class="cart-item-qty">
+                        <button class="qty-btn" data-id="${item.id}" data-change="-1">-</button>
+                        <span style="min-width:28px; text-align:center;">${item.quantity}</span>
+                        <button class="qty-btn" data-id="${item.id}" data-change="1">+</button>
+                        <button class="remove-item" data-id="${item.id}">✖</button>
+                    </div>
+                    <div class="cart-item-price">₹${subtotal}</div>
+                </div>
+            `;
+        });
+        
+        container.innerHTML = html;
+        totalEl.innerText = `Total: ₹${total.toFixed(2)}`;
+        
+        // Attach events
+        document.querySelectorAll('.qty-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const id = parseInt(btn.dataset.id);
+                const change = parseInt(btn.dataset.change);
+                const item = cart.find(i => i.id === id);
+                if(item) {
+                    const newQty = item.quantity + change;
+                    updateQuantity(id, newQty);
+                }
+            });
+        });
+        
+        document.querySelectorAll('.remove-item').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const id = parseInt(btn.dataset.id);
+                removeItem(id);
+            });
+        });
+    }
+
+    function showToast(msg, isError = false) {
+        let existing = document.querySelector('.toast-msg');
+        if(existing) existing.remove();
+        const toast = document.createElement('div');
+        toast.className = 'toast-msg' + (isError ? ' error' : '');
+        toast.innerText = msg;
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 3000);
+    }
+
+    // Render Menu Grids
+    function renderMenu() {
+        const classicGrid = document.getElementById('classic-grid');
+        const specialGrid = document.getElementById('special-grid');
+        const icedGrid = document.getElementById('iced-grid');
+        const snacksGrid = document.getElementById('snacks-grid');
+        
+        const classicItems = fullMenu.filter(i => i.category === 'classic');
+        const specialItems = fullMenu.filter(i => i.category === 'special');
+        const icedItems = fullMenu.filter(i => i.category === 'iced');
+        const snackItems = fullMenu.filter(i => i.category === 'snack');
+        
+        function createCard(item) {
+            const div = document.createElement('div');
+            div.className = 'menu-item';
+            div.innerHTML = `
+                <h3>${item.name}</h3>
+                <div class="menu-desc">${item.description}</div>
+                <div class="menu-price">₹${item.price}/-</div>
+                <div class="item-controls">
+                    <input type="number" min="1" value="1" class="quantity-input" id="qty-${item.id}">
+                    <button class="add-btn" data-id="${item.id}">Add to Cart</button>
+                </div>
+            `;
+            const addBtn = div.querySelector('.add-btn');
+            addBtn.addEventListener('click', () => {
+                const qtyInput = div.querySelector('.quantity-input');
+                let qty = parseInt(qtyInput.value);
+                if(isNaN(qty) || qty < 1) qty = 1;
+                addToCart(item, qty);
+            });
+            return div;
+        }
+        
+        classicGrid.innerHTML = '';
+        specialGrid.innerHTML = '';
+        icedGrid.innerHTML = '';
+        snacksGrid.innerHTML = '';
+        
+        classicItems.forEach(item => classicGrid.appendChild(createCard(item)));
+        specialItems.forEach(item => specialGrid.appendChild(createCard(item)));
+        icedItems.forEach(item => icedGrid.appendChild(createCard(item)));
+        snackItems.forEach(item => snacksGrid.appendChild(createCard(item)));
+    }
+
+    // Place Order
+    function placeOrder() {
+        const name = document.getElementById('delivery-name').value.trim();
+        const phone = document.getElementById('delivery-phone').value.trim();
+        const address = document.getElementById('delivery-address').value.trim();
+        const paymentMethod = document.getElementById('payment-method').value;
+        const instructions = document.getElementById('special-instructions').value;
+        
+        if(!name || !phone || !address) {
+            showToast('Please fill all delivery details (Name, Phone, Address)', true);
+            return;
+        }
+        
+        if(cart.length === 0) {
+            showToast('Your cart is empty! Add some items first.', true);
+            return;
+        }
+        
+        const total = cart.reduce((sum, i) => sum + (i.price * i.quantity), 0);
+        
+        // Build order summary
+        const orderItems = cart.map(i => `${i.name} x${i.quantity}`).join(', ');
+        const orderDetails = {
+            customer: { name, phone, address },
+            items: cart,
+            total: total,
+            paymentMethod: paymentMethod === 'cod' ? 'Cash on Delivery' : 'Online Payment',
+            instructions: instructions,
+            orderTime: new Date().toLocaleString()
+        };
+        
+        // Store order in localStorage for reference
+        localStorage.setItem('lastOrder', JSON.stringify(orderDetails));
+        
+        // Clear cart
+        cart = [];
+        saveCart();
+        
+        // Reset form fields (keep name/phone for convenience? optional)
+        document.getElementById('delivery-name').value = '';
+        document.getElementById('delivery-phone').value = '';
+        document.getElementById('delivery-address').value = '';
+        document.getElementById('special-instructions').value = '';
+        
+        showToast(`🎉 Order placed successfully! Total: ₹${total}. ${paymentMethod === 'cod' ? 'Pay on delivery.' : 'Complete payment on delivery.'} Will arrive in 30 mins!`);
+        
+        // Optional: show alert with order summary
+        setTimeout(() => {
+            alert(`✅ ORDER CONFIRMED!\n\nThank you ${name}!\nItems: ${orderItems}\nTotal: ₹${total}\nDelivery to: ${address}\nPayment: ${paymentMethod === 'cod' ? 'Cash on Delivery' : 'Online'}\n\n☕ AG COFFEE will deliver within 30 minutes.`);
+        }, 100);
+    }
+    
+    // Mobile navigation toggle
+    function setupMobileNav() {
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        if(hamburger && navMenu) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => navMenu.classList.remove('active'));
+            });
+        }
+    }
+    
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+        renderMenu();
+        loadCart();
+        setupMobileNav();
+        
+        const placeBtn = document.getElementById('place-order-btn');
+        if(placeBtn) {
+            placeBtn.addEventListener('click', placeOrder);
+        }
+    });
+</script>
+</body>
+</html>
