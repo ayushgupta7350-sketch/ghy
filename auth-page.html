@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>AG COFFEE | Account – Login or Register</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #fefaf5 0%, #f3e9de 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+
+        .auth-container {
+            max-width: 500px;
+            width: 100%;
+            background: white;
+            border-radius: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08), 0 8px 20px rgba(0,0,0,0.06);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .brand {
+            background: #2c1e12;
+            padding: 1.8rem 1rem;
+            text-align: center;
+        }
+
+        .brand h1 {
+            color: #e6c28f;
+            font-size: 2rem;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+
+        .brand p {
+            color: #d9c2a5;
+            font-size: 0.85rem;
+            margin-top: 0.3rem;
+        }
+
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid #eedfc8;
+            background: #fffaf5;
+        }
+
+        .tab-btn {
+            flex: 1;
+            background: none;
+            border: none;
+            padding: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            color: #8f7a66;
+            transition: all 0.2s;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .tab-btn.active {
+            color: #b45f2b;
+            border-bottom: 3px solid #b45f2b;
+            background: white;
+        }
+
+        .tab-pane {
+            display: none;
+            padding: 2rem 1.8rem;
+            background: white;
+        }
+
+        .tab-pane.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 0.4rem;
+            color: #2c1e12;
+            font-size: 0.9rem;
+        }
+
+        input {
+            width: 100%;
+            padding: 0.9rem 1rem;
+            border: 1.5px solid #e6cfb5;
+            border-radius: 60px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+            background: #fefaf5;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #c28a48;
+            box-shadow: 0 0 0 3px rgba(194,138,72,0.1);
+        }
+
+        button {
+            background: #2c1e12;
+            color: white;
+            border: none;
+            padding: 0.9rem;
+            width: 100%;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-family: 'Poppins', sans-serif;
+            margin-top: 0.5rem;
+        }
+
+        button:hover {
+            background: #b45f2b;
+        }
+
+        .secondary-btn {
+            background: #e8d5bc;
+            color: #2c1e12;
+            margin-top: 0.8rem;
+        }
+
+        .secondary-btn:hover {
+            background: #d4b48c;
+        }
+
+        .otp-group {
+            display: none;
+            margin-top: 0.5rem;
+        }
+
+        .inline-flex {
+            display: flex;
+            gap: 0.8rem;
+            align-items: center;
+        }
+
+        .inline-flex input {
+            flex: 2;
+        }
+
+        .inline-flex button {
+            flex: 1;
+            margin-top: 0;
+            background: #c28a48;
+        }
+
+        .inline-flex button:hover {
+            background: #9b5e2c;
+        }
+
+        .message {
+            margin-top: 1rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #b45f2b;
+        }
+
+        .success-msg {
+            color: #2c6e2c;
+        }
+
+        .error-msg {
+            color: #c0392b;
+        }
+
+        .footer-note {
+            text-align: center;
+            font-size: 0.75rem;
+            color: #8f7a66;
+            padding: 1rem;
+            background: #fefaf5;
+            border-top: 1px solid #eedfc8;
+        }
+
+        .footer-note a {
+            color: #b45f2b;
+            text-decoration: none;
+        }
+
+        @media (max-width: 520px) {
+            .tab-pane {
+                padding: 1.5rem;
+            }
+            .inline-flex {
+                flex-direction: column;
+            }
+            .inline-flex button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="auth-container">
+    <div class="brand">
+        <h1>☕ AG COFFEE</h1>
+        <p>Freshly brewed · Ethically sourced</p>
+    </div>
+
+    <div class="tabs">
+        <button class="tab-btn active" data-tab="login">Login</button>
+        <button class="tab-btn" data-tab="register">Register</button>
+    </div>
+
+    <!-- LOGIN TAB -->
+    <div id="loginPane" class="tab-pane active">
+        <form id="loginForm">
+            <div class="form-group">
+                <label>📧 Email Address</label>
+                <input type="email" id="loginEmail" placeholder="hello@example.com" required>
+            </div>
+            <div class="form-group">
+                <label>🔒 Password</label>
+                <input type="password" id="loginPassword" placeholder="••••••••" required>
+            </div>
+            <button type="submit">Login & Continue ☕</button>
+        </form>
+        <div id="loginMessage" class="message"></div>
+        <div style="text-align: center; margin-top: 1rem;">
+            <small>New here? <a href="#" id="switchToRegister" style="color:#b45f2b;">Create an account</a></small>
+        </div>
+    </div>
+
+    <!-- REGISTER TAB -->
+    <div id="registerPane" class="tab-pane">
+        <form id="registerForm">
+            <div class="form-group">
+                <label>👤 Full Name</label>
+                <input type="text" id="regName" placeholder="Ayush Gupta" required>
+            </div>
+            <div class="form-group">
+                <label>📧 Email Address</label>
+                <input type="email" id="regEmail" placeholder="hello@agcoffee.com" required>
+            </div>
+            <div class="form-group">
+                <label>🔒 Password</label>
+                <input type="password" id="regPassword" placeholder="Create a strong password" required>
+            </div>
+            <div class="form-group">
+                <label>📱 OTP Verification (simulated)</label>
+                <div class="inline-flex">
+                    <input type="text" id="otpInput" placeholder="6-digit OTP" maxlength="6" autocomplete="off">
+                    <button type="button" id="sendOtpBtn">Send OTP</button>
+                </div>
+                <div id="otpStatus" class="message" style="font-size:0.75rem;"></div>
+            </div>
+            <button type="submit" id="registerBtn" disabled>Verify OTP & Register</button>
+        </form>
+        <div id="registerMessage" class="message"></div>
+        <div style="text-align: center; margin-top: 1rem;">
+            <small>Already have an account? <a href="#" id="switchToLogin" style="color:#b45f2b;">Login here</a></small>
+        </div>
+    </div>
+
+    <div class="footer-note">
+        🔐 Demo: OTP is shown in an alert (no real email). <br>
+        After login/register, you'll be redirected to the home page.
+    </div>
+</div>
+
+<script>
+    // ---------- STORAGE KEYS ----------
+    const STORAGE_USERS = 'ag_coffee_users';
+    const STORAGE_SESSION = 'ag_coffee_session';
+
+    // ---------- Helper Functions ----------
+    function getUsers() {
+        const users = localStorage.getItem(STORAGE_USERS);
+        return users ? JSON.parse(users) : [];
+    }
+
+    function saveUsers(users) {
+        localStorage.setItem(STORAGE_USERS, JSON.stringify(users));
+    }
+
+    function setLoggedInUser(user) {
+        localStorage.setItem(STORAGE_SESSION, JSON.stringify({ name: user.name, email: user.email, loginTime: new Date().toISOString() }));
+    }
+
+    function isLoggedIn() {
+        return localStorage.getItem(STORAGE_SESSION) !== null;
+    }
+
+    // ---------- OTP Simulation ----------
+    let pendingOtp = null;
+    let pendingRegistration = null; // store { name, email, password }
+
+    function generateOTP() {
+        return Math.floor(100000 + Math.random() * 900000).toString();
+    }
+
+    function showOtpAlert(otp) {
+        alert(`🔐 Your verification OTP is: ${otp}\n\n(For demo purposes, enter this code to complete registration.)`);
+        console.log(`[DEMO OTP] ${otp}`);
+    }
+
+    // Send OTP button handler
+    document.getElementById('sendOtpBtn').addEventListener('click', () => {
+        const name = document.getElementById('regName').value.trim();
+        const email = document.getElementById('regEmail').value.trim();
+        const password = document.getElementById('regPassword').value;
+
+        if (!name || !email || !password) {
+            showMessage('registerMessage', 'Please fill all fields (Name, Email, Password).', 'error');
+            return;
+        }
+
+        // Check if email already exists
+        const users = getUsers();
+        if (users.find(u => u.email === email)) {
+            showMessage('registerMessage', 'Email already registered. Please login instead.', 'error');
+            return;
+        }
+
+        // Store pending data
+        pendingRegistration = { name, email, password };
+        pendingOtp = generateOTP();
+        showOtpAlert(pendingOtp);
+
+        // Enable OTP input and register button
+        document.getElementById('otpInput').disabled = false;
+        document.getElementById('registerBtn').disabled = false;
+        showMessage('otpStatus', '✓ OTP sent! Enter the 6-digit code above.', 'success');
+    });
+
+    // Register form submission (verify OTP first)
+    document.getElementById('registerForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const enteredOtp = document.getElementById('otpInput').value.trim();
+
+        if (!pendingRegistration) {
+            showMessage('registerMessage', 'Please request OTP first.', 'error');
+            return;
+        }
+
+        if (!pendingOtp) {
+            showMessage('registerMessage', 'No OTP pending. Click "Send OTP" again.', 'error');
+            return;
+        }
+
+        if (enteredOtp !== pendingOtp) {
+            showMessage('registerMessage', 'Invalid OTP. Please try again.', 'error');
+            return;
+        }
+
+        // OTP matched – save user
+        const users = getUsers();
+        const newUser = {
+            name: pendingRegistration.name,
+            email: pendingRegistration.email,
+            password: pendingRegistration.password, // In real app, hash this
+            registeredAt: new Date().toISOString()
+        };
+        users.push(newUser);
+        saveUsers(users);
+
+        // Auto login after registration
+        setLoggedInUser({ name: newUser.name, email: newUser.email });
+        showMessage('registerMessage', '✅ Registration successful! Redirecting to home page...', 'success');
+        
+        // Redirect after short delay
+        setTimeout(() => {
+            window.location.href = 'index.html'; // Change to your main website URL
+        }, 1500);
+    });
+
+    // Login handler
+    document.getElementById('loginForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = document.getElementById('loginEmail').value.trim();
+        const password = document.getElementById('loginPassword').value;
+
+        const users = getUsers();
+        const user = users.find(u => u.email === email && u.password === password);
+
+        if (user) {
+            setLoggedInUser({ name: user.name, email: user.email });
+            showMessage('loginMessage', `Welcome back, ${user.name}! Redirecting...`, 'success');
+            setTimeout(() => {
+                window.location.href = 'index.html'; // Change to your main website
+            }, 1000);
+        } else {
+            showMessage('loginMessage', 'Invalid email or password. Please try again.', 'error');
+        }
+    });
+
+    // Helper to show messages
+    function showMessage(elementId, text, type) {
+        const el = document.getElementById(elementId);
+        if (!el) return;
+        el.innerHTML = text;
+        el.className = `message ${type === 'success' ? 'success-msg' : 'error-msg'}`;
+        setTimeout(() => {
+            if (el.innerHTML === text) el.innerHTML = '';
+        }, 4000);
+    }
+
+    // Tab switching logic
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const loginPane = document.getElementById('loginPane');
+    const registerPane = document.getElementById('registerPane');
+
+    function switchTab(tabId) {
+        if (tabId === 'login') {
+            loginPane.classList.add('active');
+            registerPane.classList.remove('active');
+            tabBtns[0].classList.add('active');
+            tabBtns[1].classList.remove('active');
+        } else {
+            registerPane.classList.add('active');
+            loginPane.classList.remove('active');
+            tabBtns[1].classList.add('active');
+            tabBtns[0].classList.remove('active');
+            // Reset registration fields if needed (optional)
+        }
+    }
+
+    tabBtns[0].addEventListener('click', () => switchTab('login'));
+    tabBtns[1].addEventListener('click', () => switchTab('register'));
+
+    document.getElementById('switchToRegister').addEventListener('click', (e) => {
+        e.preventDefault();
+        switchTab('register');
+    });
+    document.getElementById('switchToLogin').addEventListener('click', (e) => {
+        e.preventDefault();
+        switchTab('login');
+    });
+
+    // Disable register button initially
+    document.getElementById('registerBtn').disabled = true;
+    document.getElementById('otpInput').disabled = true;
+
+    // If user is already logged in, redirect to home
+    if (isLoggedIn()) {
+        window.location.href = 'index.html';
+    }
+</script>
+</body>
+</html>
